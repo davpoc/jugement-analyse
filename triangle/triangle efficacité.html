@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préparation Introduction - Layout Tableau Large</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2c3e50; 
+            color: #ecf0f1; 
+            line-height: 1.6;
+        }
+        .container {
+            /* MODIFIÉ: Utiliser plus de largeur */
+            width: 90%; /* S'adapte à la largeur de l'écran */
+            max-width: 1800px; /* Limite maximale pour les très grands écrans */
+            min-width: 900px; /* Limite minimale pour ne pas trop écraser */
+            margin: 20px auto;
+            background-color: #34495e; 
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 1px solid #4a6572;
+        }
+        h1 {
+            color: #ecf0f1;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+            font-size: 2em;
+        }
+        h1 .triangle-icon { 
+            color: #e74c3c; 
+            margin: 0 5px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #283747; 
+            border-radius: 6px;
+            border: 1px solid #3b5064;
+        }
+        .section label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #bdc3c7;
+            font-size: 0.95em;
+        }
+        .section input[type="text"], .section select {
+            width: calc(100% - 24px); 
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #566573;
+            border-radius: 4px;
+            background-color: #5d6d7e;
+            color: #ecf0f1;
+            box-sizing: border-box;
+            font-size: 0.95em;
+        }
+        .section select {
+            width: auto; 
+            min-width: 200px;
+            margin-right: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate; 
+            border-spacing: 0; 
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #4a6572;
+            padding: 10px 12px; /* Ajusté le padding un peu */
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+            font-size: 1.05em; /* Légèrement réduit */
+            border-top-left-radius: 5px; 
+            border-top-right-radius: 5px;
+        }
+        table thead tr th:first-child {border-top-left-radius: 5px;}
+        table thead tr th:last-child {border-top-right-radius: 5px;}
+
+        td.aspect-label { 
+            font-weight: bold;
+            background-color: #4a6572; 
+            color: #ecf0f1;
+            /* MODIFIÉ: Réduire la largeur de la première colonne */
+            width: 15%; 
+            font-size: 0.9em; /* Légèrement réduit pour les labels */
+        }
+         table tbody tr:last-child td.aspect-label {
+            border-bottom-left-radius: 5px;
+        }
+         table tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 5px;
+        }
+
+
+        textarea {
+            width: 100%; 
+            min-height: 90px; /* Un peu moins haut par défaut */
+            padding: 8px; /* Un peu moins de padding */
+            border: 1px solid #566573;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.9em; /* Un peu plus petit */
+            resize: vertical;
+            box-sizing: border-box;
+            background-color: #5d6d7e;
+            color: #ecf0f1;
+        }
+        /* Style pour les labels DANS les cellules du tableau */
+        td > label {
+            font-size: 0.85em;
+            color: #bdc3c7;
+            margin-bottom: 4px;
+            display: block;
+        }
+        
+        .button-group button { margin-right: 10px; }
+        button {
+            background-color: #27ae60; 
+            color: white;
+            border: none;
+            padding: 10px 18px; /* Ajusté */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9em; /* Un peu plus petit */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 5px; 
+        }
+        button:hover {
+            opacity: 0.85;
+        }
+        button.action-btn { background-color: #3498db; } 
+        button.delete-btn { background-color: #e74c3c; } 
+        button.secondary-btn { background-color: #8e44ad; }
+
+
+        #feedback {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            min-height: 22px; 
+            font-size: 0.9em;
+        }
+        .file-operations label { display: inline-block; margin-right: 10px;}
+        input[type="file"] { margin-top: 5px; color: #bdc3c7; }
+        input[type="file"]::file-selector-button {
+            background-color: #5dade2;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #4a90e2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="triangle-icon">🔺</span> Préparation d'Introduction Efficace <span class="triangle-icon">🔺</span></h1>
+
+        <div class="section project-management">
+            <label for="projectName">Nom du Projet/Formation :</label>
+            <input type="text" id="projectName" placeholder="Ex: Introduction Réunion Annuelle">
+            <div class="button-group">
+                <button onclick="saveProjectData()">💾 Sauvegarder Projet</button>
+                <button class="delete-btn" onclick="deleteSelectedProjectData()">🗑️ Supprimer Projet Sélectionné</button>
+            </div>
+            <label for="projectList" style="margin-top:15px;">Charger un Projet Sauvegardé :</label>
+            <div style="display:flex; align-items:center;">
+                <select id="projectList"></select>
+                <button class="action-btn" onclick="loadSelectedProjectData()">🔄 Charger Projet</button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspects</th>
+                    <th>🎯 LE "POURQUOI ?" <br/> <span style="font-size:0.8em; font-weight:normal;">Pertinence & Motivation (Le Sens)</span></th>
+                    <th>🗺️ LE "QUOI ?" <br/> <span style="font-size:0.8em; font-weight:normal;">Objectifs & Contenu (La Clarté)</span></th>
+                    <th>⚙️ LE "COMMENT ?" <br/> <span style="font-size:0.8em; font-weight:normal;">Méthodologie & Cadre (L'Organisation)</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="aspect-label">Question Clé du Participant</td>
+                    <td><textarea id="pourquoi_question" placeholder="Pourquoi suis-je ici ? Qu'est-ce que cela va m'apporter ?"></textarea></td>
+                    <td><textarea id="quoi_question" placeholder="Où allons-nous ? Qu'allons-nous apprendre/voir ?"></textarea></td>
+                    <td><textarea id="comment_question" placeholder="Comment allons-nous travailler ? Règles du jeu ?"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="aspect-label">Votre Objectif Formateur</td>
+                    <td><textarea id="pourquoi_objectif_formateur" placeholder="Susciter l'intérêt, créer le besoin, donner du sens."></textarea></td>
+                    <td><textarea id="quoi_objectif_formateur" placeholder="Donner une vision claire, rassurer, structurer."></textarea></td>
+                    <td><textarea id="comment_objectif_formateur" placeholder="Instaurer la confiance, faciliter la participation."></textarea></td>
+                </tr>
+                <tr>
+                    <td class="aspect-label">Accroche / Contexte / Problématique</td>
+                    <td><textarea id="pourquoi_accroche" placeholder="Statistique choc, question percutante, anecdote..."></textarea></td>
+                    <td><label for="quoi_objectif_global">Objectif Global :</label><textarea id="quoi_objectif_global" placeholder="La finalité principale de la session."></textarea></td>
+                    <td><label for="comment_methodes">Méthodes Pédagogiques :</label><textarea id="comment_methodes" placeholder="Exposé interactif, études de cas, ateliers..."></textarea></td>
+                </tr>
+                <tr>
+                    <td class="aspect-label">Bénéfices Clés (WIIFM)</td>
+                    <td><textarea id="pourquoi_benefices" placeholder="Ce que les participants vont gagner (compétences, solutions...)."></textarea></td>
+                    <td rowspan="2"><label for="quoi_objectifs_specifiques">Objectifs Pédagogiques Spécifiques :</label><textarea id="quoi_objectifs_specifiques" placeholder="1. Identifier...
+2. Appliquer...
+3. Évaluer..."></textarea></td>
+                    <td rowspan="2"><label for="comment_roles">Rôles (Participants / Formateur) :</label><textarea id="comment_roles" placeholder="Attentes envers chacun, posture..."></textarea></td>
+                </tr>
+                <tr>
+                    <td class="aspect-label">Lien avec leurs Attentes</td>
+                    <td><textarea id="pourquoi_attentes" placeholder="Comment cela répond-il à leurs besoins/attentes exprimées ?"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section file-operations button-group">
+            <button class="action-btn" onclick="downloadProjectJSON()">📥 Exporter en JSON</button>
+            <label for="uploadFile">Importer depuis JSON :</label>
+            <input type="file" id="uploadFile" accept=".json" onchange="handleJSONFileUpload(event)">
+        </div>
+        
+        <div class="section button-group">
+             <button class="secondary-btn" onclick="printToPDF()">📄 Imprimer / Exporter en PDF</button>
+             <button class="delete-btn" onclick="clearAllFormFields()"> Effacer Tout le Formulaire</button>
+        </div>
+        <div id="feedback" class="feedback"></div>
+    </div>
+
+    <script>
+        // SCRIPT IDENTIQUE à la "Version Tableau Fonctionnelle"
+        // (Aucun changement dans le JavaScript n'est nécessaire pour ces ajustements CSS)
+        console.log("Script Tableau Large Fonctionnel démarré.");
+
+        const LS_PROJECT_INDEX_KEY = 'triangleTableAppLarge_ProjectIndex'; 
+        const LS_PROJECT_DATA_PREFIX = 'triangleTableAppLarge_ProjectData_';
+        const ALL_TEXTAREA_IDS = [
+            'pourquoi_question', 'pourquoi_objectif_formateur', 'pourquoi_accroche', 'pourquoi_benefices', 'pourquoi_attentes',
+            'quoi_question', 'quoi_objectif_formateur', 'quoi_objectif_global', 'quoi_objectifs_specifiques',
+            'comment_question', 'comment_objectif_formateur', 'comment_methodes', 'comment_roles'
+        ];
+
+        function _getFeedbackEl() { return document.getElementById('feedback'); }
+        function _getProjectNameInput() { return document.getElementById('projectName'); }
+        function _getProjectListSelect() { return document.getElementById('projectList'); }
+
+        function showAppFeedback(message, isError = false) { const feedbackEl = _getFeedbackEl(); if (feedbackEl) { feedbackEl.textContent = message; feedbackEl.style.color = isError ? '#e74c3c' : '#2ecc71'; setTimeout(() => { feedbackEl.textContent = ''; }, 4000); } }
+        function getProjectIndex() { const index = localStorage.getItem(LS_PROJECT_INDEX_KEY); return index ? JSON.parse(index) : []; }
+        function saveProjectIndex(index) { try { localStorage.setItem(LS_PROJECT_INDEX_KEY, JSON.stringify(index)); } catch (e) { showAppFeedback("Erreur sauvegarde (localStorage plein/désactivé).", true); console.error("Erreur sauvegarde index:", e); } }
+        function populateProjectList() { const projectListSelect = _getProjectListSelect(); if (!projectListSelect) return; const index = getProjectIndex(); projectListSelect.innerHTML = '<option value="">-- Choisir un projet --</option>'; index.forEach(name => { const option = document.createElement('option'); option.value = name; option.textContent = name; projectListSelect.appendChild(option); }); }
+        function getAllFormData() { const data = {}; ALL_TEXTAREA_IDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; }); return data; }
+        function populateForm(dataToLoad) { if (typeof dataToLoad !== 'object' || dataToLoad === null) return; ALL_TEXTAREA_IDS.forEach(id => { const el = document.getElementById(id); if (el) { el.value = dataToLoad[id] || ''; } }); }
+        function saveProjectData() { const projectNameInput = _getProjectNameInput(); if (!projectNameInput) return; const projectName = projectNameInput.value.trim(); if (!projectName) { showAppFeedback('Veuillez entrer un nom de projet.', true); return; } const projectData = getAllFormData(); try { localStorage.setItem(LS_PROJECT_DATA_PREFIX + projectName, JSON.stringify(projectData)); let index = getProjectIndex(); if (!index.includes(projectName)) { index.push(projectName); index.sort(); saveProjectIndex(index); populateProjectList(); } showAppFeedback(`Projet "${projectName}" sauvegardé.`); } catch (e) { showAppFeedback("Erreur sauvegarde projet.", true); console.error("Erreur sauvegarde projet:", e); } }
+        function loadSelectedProjectData() { const projectListSelect = _getProjectListSelect(); const projectNameInput = _getProjectNameInput(); if (!projectListSelect || !projectNameInput) return; const projectName = projectListSelect.value; if (!projectName) { showAppFeedback('Veuillez sélectionner un projet.', true); return; } const projectDataString = localStorage.getItem(LS_PROJECT_DATA_PREFIX + projectName); if (projectDataString) { try { const projectData = JSON.parse(projectDataString); populateForm(projectData); projectNameInput.value = projectName; showAppFeedback(`Projet "${projectName}" chargé.`); } catch (e) { showAppFeedback("Erreur analyse données projet.", true); console.error("Erreur parsing JSON projet:", e); } } else { showAppFeedback(`Projet "${projectName}" non trouvé.`, true); } }
+        function deleteSelectedProjectData() { const projectListSelect = _getProjectListSelect(); const projectNameInput = _getProjectNameInput(); if (!projectListSelect || !projectNameInput) return; const projectName = projectListSelect.value; if (!projectName) { showAppFeedback('Veuillez sélectionner un projet.', true); return; } if (confirm(`Supprimer projet "${projectName}" ? Irréversible.`)) { localStorage.removeItem(LS_PROJECT_DATA_PREFIX + projectName); let index = getProjectIndex(); index = index.filter(name => name !== projectName); saveProjectIndex(index); populateProjectList(); if (projectNameInput.value === projectName) { clearAllFormFields(false); projectNameInput.value = ''; } showAppFeedback(`Projet "${projectName}" supprimé.`); } }
+        function clearAllFormFields(confirmFirst = true) { if (confirmFirst && !confirm("Vraiment effacer tous les champs ?")) { return; } ALL_TEXTAREA_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; }); showAppFeedback("Formulaire effacé."); }
+        function downloadProjectJSON() { const projectNameInput = _getProjectNameInput(); if (!projectNameInput) return; const projectName = projectNameInput.value.trim() || 'mon_projet_triangle'; const formData = getAllFormData(); const dataToExport = { projectName: projectName, formData: formData }; const jsonData = JSON.stringify(dataToExport, null, 2); const blob = new Blob([jsonData], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `${projectName.replace(/\s+/g, '_')}_preparation_intro.json`; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); showAppFeedback('Projet exporté en JSON.'); }
+        function handleJSONFileUpload(event) { const file = event.target.files[0]; if (file) { const reader = new FileReader(); reader.onload = function(e) { try { const importedData = JSON.parse(e.target.result); if (importedData.formData && typeof importedData.formData === 'object') { populateForm(importedData.formData); const projectNameInput = _getProjectNameInput(); if (projectNameInput && importedData.projectName) { projectNameInput.value = importedData.projectName; } else if (projectNameInput) { projectNameInput.value = file.name.replace('.json', '').replace('_preparation_intro', ''); } showAppFeedback(`Projet importé. Sauvegardez localement si besoin.`); } else { showAppFeedback('Fichier JSON invalide (clé "formData" attendue).', true); } } catch (error) { showAppFeedback(`Erreur importation JSON: ${error.message}`, true); console.error("Erreur parsing/import JSON:", error); } }; reader.onerror = function() { showAppFeedback("Erreur lecture fichier.", true); }; reader.readAsText(file); event.target.value = null; } }
+        function printToPDF() { window.print(); }
+        
+        window.onload = function() { console.log("window.onload Tableau Large Fonctionnel."); populateProjectList(); };
+        console.log("Script Tableau Large Fonctionnel chargé.");
+    </script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+:root {
+    --primary-color: #00aeff; 
+    --secondary-color: #adb5bd; 
+    --background-color: #212529; 
+    --card-background: #343a40; 
+    --text-color: #f8f9fa; 
+    --text-muted: #adb5bd; 
+    --judgment-color: #e74c3c; 
+    --analysis-color: #2ecc71; 
+    --border-color: #495057; 
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+    --shadow: 0 5px 20px rgba(0, 0, 0, 0.3); 
+    --border-radius: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    width: 100%; height: 100%; overflow: hidden; 
+    font-family: var(--font-secondary);
+    background-color: var(--background-color); color: var(--text-color);
+}
+
+.presentation-viewport { width: 100%; height: 100%; position: relative; }
+.slide-container { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
+
+.slide {
+    width: 100vw; height: 100vh; flex-shrink: 0; 
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 40px 120px 40px; 
+    position: relative; 
+}
+
+.slide-content {
+    width: 100%; 
+    max-width: 1000px; 
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.slide-content.centered-content { 
+    justify-content: center; 
+    align-items: center;    
+    text-align: center;     
+}
+
+.slide-content.text-content-slide {
+    justify-content: flex-start; 
+    align-items: flex-start;     
+    text-align: left;          
+    overflow-y: auto;          
+    max-height: calc(100% - 40px); 
+    padding: 20px; 
+}
+.text-content-slide .intro-title,
+.text-content-slide .table-container,
+.text-content-slide .large-takeaway-text {
+    width: 100%;
+}
+.text-content-slide::-webkit-scrollbar { width: 8px; }
+.text-content-slide::-webkit-scrollbar-track { background: var(--border-color); border-radius: 4px; }
+.text-content-slide::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 4px; }
+.text-content-slide::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+
+
+/* --- Animation pour la Diapositive Titre (#slide-title) --- */
+.title-main-graphic { 
+    max-width: 250px; 
+    height: auto;
+    margin-bottom: 25px; 
+    opacity: 0; 
+    transform: scale(0.8) translateY(15px); 
+    animation: graphicFadeInScaleUp 1.2s ease-out 0.2s forwards;
+}
+@keyframes graphicFadeInScaleUp {
+    from { opacity: 0; transform: scale(0.8) translateY(15px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+#slide-title #main-title-heading,
+#slide-title #main-subtitle {
+    opacity: 0; 
+    animation-fill-mode: forwards; 
+}
+#slide-title .title-icon {
+    display: inline-block; 
+    opacity: 0;
+    transform: scale(0.3) rotate(-180deg);
+    animation: iconPopIn 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards; 
+}
+#slide-title .title-text {
+    display: inline-block; 
+    opacity: 0;
+    transform: translateY(30px);
+    animation: textFadeUp 1s ease-out 1.6s forwards; 
+}
+#slide-title #main-subtitle {
+    transform: translateY(30px); 
+    animation: textFadeUp 1s ease-out 2.1s forwards; 
+}
+@keyframes iconPopIn {
+    0% { opacity: 0.2; transform: scale(0.3) rotate(-180deg); }
+    60% { opacity: 1; transform: scale(1.8) rotate(20deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes textFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+#slide-title #main-title-heading { 
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+    font-size: 3.2em; 
+    margin-bottom: 15px; 
+    opacity: 1; 
+}
+#slide-title .title-icon { 
+    margin-right: 15px; 
+    font-size: 1em; 
+}
+#slide-title #main-subtitle { 
+    font-size: 1.4em; 
+    color: var(--text-muted);
+    max-width: 750px;
+}
+
+
+/* Styles communs pour les diapositives Juger, Analyser, Tableau */
+.text-content-slide .intro-title { 
+    display: flex; align-items: center; gap: 10px; margin-bottom: 20px; 
+    border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;
+}
+.text-content-slide .intro-icon { stroke-width: 1.5; }
+.text-content-slide .judgment-icon-style { color: var(--judgment-color); }
+.text-content-slide .analysis-icon-style { color: var(--analysis-color); }
+.text-content-slide h2 { 
+    font-family: var(--font-primary); color: var(--primary-color); 
+    font-size: 2em; 
+    margin-bottom: 0; 
+}
+.text-content-slide h3 { 
+    font-family: var(--font-primary); color: var(--text-color); 
+    font-size: 1.4em; 
+    margin-top: 25px; margin-bottom: 12px; 
+}
+.text-content-slide p,
+.text-content-slide ul { 
+    margin-bottom: 18px; color: var(--text-muted); font-size: 1.05em; 
+}
+.text-content-slide p strong,
+.text-content-slide ul strong { color: var(--text-color); }
+.text-content-slide ul { padding-left: 25px; list-style-position: outside; }
+.text-content-slide li { margin-bottom: 10px; }
+.text-content-slide .example-text { 
+    font-style: italic; padding: 12px 18px; 
+    border-left: 4px solid var(--secondary-color); margin-top: 12px; 
+    color: var(--text-color); background-color: rgba(255,255,255,0.05); border-radius: 4px; 
+}
+.text-content-slide .table-container { 
+    overflow-x: auto; margin-top: 15px; 
+}
+.text-content-slide table { 
+    width: 100%; border-collapse: collapse; font-size: 1em; 
+}
+.text-content-slide th, .text-content-slide td { 
+    border: 1px solid var(--border-color); padding: 12px 15px; text-align: left; 
+}
+.text-content-slide thead th { 
+    background-color: #40464c; color: var(--primary-color); 
+    font-family: var(--font-primary); font-weight: 600; 
+}
+.text-content-slide tbody tr:nth-child(even) { background-color: #3a4045; }
+.text-content-slide tbody td:first-child { font-weight: 600; color: var(--text-color); }
+
+.text-content-slide .large-takeaway-text { 
+    margin-top: 40px; padding: 20px 0; text-align: center;
+}
+.text-content-slide .large-takeaway-text p {
+    font-family: var(--font-primary); font-size: 2.4em; font-weight: 600;
+    line-height: 1.5; color: var(--text-color); margin-bottom: 25px; 
+}
+.text-content-slide .large-takeaway-text p.quote {
+    font-size: 1.9em; color: var(--text-muted); font-style: italic;
+    margin-top: -10px; margin-bottom: 25px;
+}
+.text-content-slide .large-takeaway-text span { color: var(--primary-color); font-weight: 700; }
+
+
+/* Styles pour la diapositive de Sélection des Catégories */
+#slide-category-selection .slide-content { /* Utilise .centered-content */ }
+#slide-category-selection h2 { font-family: var(--font-primary); color: var(--primary-color); font-size: 2em; margin-bottom: 30px; }
+.category-checkbox-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 30px; max-width: 800px; }
+.category-checkbox-item { background-color: var(--card-background); padding: 12px 20px; border-radius: var(--border-radius); border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s ease-in-out; display: flex; align-items: center; gap: 10px; }
+.category-checkbox-item:hover { border-color: var(--primary-color); background-color: lighten(var(--card-background), 5%); }
+.category-checkbox-item input[type="checkbox"] { transform: scale(1.3); margin-right: 8px; accent-color: var(--primary-color); }
+.category-checkbox-item label { font-size: 1em; cursor: pointer; user-select: none; }
+.action-button { padding: 12px 25px; font-family: var(--font-primary); font-weight: 600; font-size: 1.1em; border: none; background-color: var(--primary-color); color: var(--background-color); border-radius: var(--border-radius); cursor: pointer; transition: background-color 0.3s ease; }
+.action-button:hover { background-color: darken(var(--primary-color), 10%); }
+
+/* Styles pour les diapositives de catégories d'exemples */
+.category-slide .slide-content { 
+    align-items: center; 
+}
+.category-slide h2.category-title { font-family: var(--font-primary); color: var(--primary-color); font-size: 2.2em; margin-bottom: 20px; text-align: center; }
+.examples-grid-container { 
+    width: 100%; 
+    max-width: 1000px; 
+    flex-grow: 1; 
+    overflow-y: auto; 
+    padding: 10px; 
+    perspective: 1200px; 
+}
+.examples-grid-container::-webkit-scrollbar { width: 8px; }
+.examples-grid-container::-webkit-scrollbar-track { background: var(--border-color); border-radius: 4px; }
+.examples-grid-container::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 4px; }
+.examples-grid-container::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+.examples-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; 
+    width: 100%;
+    padding-bottom: 20px; 
+}
+
+/* Cartes Interactives */
+.card {
+    background-color: transparent; 
+    border-radius: var(--border-radius);
+    min-height: 200px; 
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d; 
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+.card-face {
+    position: absolute; 
+    top: 0; left: 0; width: 100%; height: 100%;
+    backface-visibility: hidden; 
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 20px; text-align: center;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    background-color: var(--card-background); 
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+.card-front { /* Rien de spécial */ }
+.card-back {
+    transform: rotateY(180deg); 
+}
+.card .icon-svg { width: 36px; height: 36px; margin-bottom: 12px; stroke-width: 2; } 
+.card .judgment-icon { stroke: var(--judgment-color); } 
+.card .analysis-icon { stroke: var(--analysis-color); } 
+.card .text { font-size: 1em; font-weight: 500; }
+
+
+/* --- Styles pour le Branding sur les Diapositives (SANS FOND) --- */
+.slide-branding {
+    position: absolute;
+    bottom: 30px; 
+    left: 50%;   
+    transform: translateX(-50%); 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    gap: 8px; 
+    z-index: 10; 
+    padding: 0; 
+    text-align: center; 
+    max-width: 90%;
+}
+.branding-logo {
+    height: 35px; 
+    width: auto;  
+    margin-bottom: 5px;
+}
+.branding-info p {
+    font-family: var(--font-secondary);
+    font-size: 0.75em; 
+    color: var(--text-color); 
+    line-height: 1.3;
+    margin-bottom: 1px;
+}
+.branding-info p strong {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.9em; 
+}
+.branding-info p.small-text {
+    font-size: 0.65em; 
+    opacity: 0.8;
+    color: var(--text-muted); 
+}
+
+/* Flèches, Barre de progression, Indicateur */
+.nav-arrow { position: fixed; top: 50%; transform: translateY(-50%); background-color: rgba(0, 174, 255, 0.6); color: white; border: none; font-size: 2.5em; font-weight: bold; padding: 10px 15px; cursor: pointer; z-index: 1000; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease; user-select: none; }
+.nav-arrow:hover { background-color: var(--primary-color); }
+.nav-arrow.prev { left: 20px; }
+.nav-arrow.next { right: 20px; }
+.nav-arrow.hidden { display: none; }
+.progress-bar-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 8px; background-color: var(--card-background); z-index: 998; }
+.progress-bar-fill { width: 0%; height: 100%; background-color: var(--primary-color); transition: width 0.3s ease-out; }
+#slide-indicator { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.7); color: white; padding: 5px 12px; border-radius: var(--border-radius); font-size: 0.9em; z-index: 999; }
+
+/* Ajustements responsives */
+@media (max-width: 768px) {
+    .slide { padding: 20px 20px 100px 20px; }
+    .slide-content.text-content-slide { max-height: calc(100vh - 120px); padding: 10px;}
+    .examples-grid-container { max-height: calc(100vh - (20px + 100px + 50px + 20px) ); /* slide padding top + slide padding bottom + titre approx + padding interne grille */ padding: 5px; }
+    #slide-title #main-title-heading { font-size: 2.2em; } 
+    #slide-title .subtitle { font-size: 1.1em; }
+    #slide-title .title-icon { margin-right: 10px; }
+    .title-main-graphic { max-width: 180px; margin-bottom: 20px;}
+    @keyframes textFadeUpMobile { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } } /* Renommé pour éviter conflit */
+    @keyframes iconPopInMobile { 0% { opacity: 0.2; transform: scale(0.3) rotate(-180deg); } 60% { opacity: 1; transform: scale(1.5) rotate(20deg); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } } /* Renommé */
+    #slide-title .title-icon { animation-name: iconPopInMobile; animation-duration: 1.5s; animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); animation-delay:0.7s; animation-fill-mode: forwards; }
+    #slide-title .title-text { animation-name: textFadeUpMobile; animation-duration: 1s; animation-timing-function: ease-out; animation-delay:1.6s; animation-fill-mode: forwards; }
+    #slide-title #main-subtitle { animation-name: textFadeUpMobile; animation-duration: 1s; animation-timing-function: ease-out; animation-delay: 2.1s; animation-fill-mode: forwards; }
+    .text-content-slide h2 { font-size: 1.6em; }
+    .text-content-slide h3 { font-size: 1.2em; }
+    .text-content-slide p, .text-content-slide ul { font-size: 0.95em;}
+    .text-content-slide table { font-size: 0.9em; } 
+    .text-content-slide th, .text-content-slide td { padding: 8px 10px; }
+    .text-content-slide .large-takeaway-text { margin-top: 30px; }
+    .text-content-slide .large-takeaway-text p { font-size: 1.6em; margin-bottom: 20px; }
+    .text-content-slide .large-takeaway-text p.quote { font-size: 1.3em; margin-bottom: 20px; }
+    #slide-category-selection h2 { font-size: 1.6em; }
+    .category-checkbox-container { gap: 10px; }
+    .category-checkbox-item { padding: 10px 15px; }
+    .category-slide h2.category-title { font-size: 1.6em; margin-bottom: 15px; }
+    .examples-grid { grid-template-columns: 1fr; gap: 15px; }
+    .card { min-height: 180px; }
+    .card .icon-svg { width: 30px; height: 30px; margin-bottom: 10px; }
+    .card .text { font-size: 0.9em; }
+    .slide-branding { bottom: 15px; gap: 4px; padding: 0; max-width: calc(100% - 30px); } 
+    .branding-logo { height: 28px; }
+    .branding-info p { font-size: 0.65em; }
+    .branding-info p strong { font-size: 0.75em; }
+    .branding-info p.small-text { font-size: 0.55em; }
+    .nav-arrow { font-size: 1.8em; width: 40px; height: 40px; padding: 5px 8px; }
+    .nav-arrow.prev { left: 10px; }
+    .nav-arrow.next { right: 10px; }
+    #slide-indicator { font-size: 0.8em; padding: 4px 8px; bottom: 12px; }
+    .progress-bar-container { height: 6px; }
+}
